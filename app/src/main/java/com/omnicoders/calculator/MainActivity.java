@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
                     num1 = Float.parseFloat(txtResult.getText() + "");
                     mSub = true;
                     mDec = false;
+                    txtResult.setText(null);
                 }
             }
         });
