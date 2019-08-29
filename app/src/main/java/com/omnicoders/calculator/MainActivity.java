@@ -7,19 +7,20 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    //Decalare all widgets here
-    TextView showResult;
-    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
-    Button btnDiv, btnPlus, btnMult, btnMinus, btnDot, btnClear, btnMod, btnEqual;
 
-    String str = "";
-    Character op = 'q';
-    int num, num1;
+    Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
+    Button btnDiv, btnMult, btnMod, btnPlus, btnMinus, btnDot, btnEqual, btnClear;
+    TextView txtResult;
+    boolean mDiv, mSub, mAdd, mMod, mMult, mDec;
+    double num1 = 0.0, num2 = 0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //get button widgets by ids
+
+
+        //view buttons by ids
+
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
         btn2 = findViewById(R.id.btn2);
@@ -30,167 +31,197 @@ public class MainActivity extends AppCompatActivity {
         btn7 = findViewById(R.id.btn7);
         btn8 = findViewById(R.id.btn8);
         btn9 = findViewById(R.id.btn9);
-        btnDot = findViewById(R.id.btnDot);
         btnDiv = findViewById(R.id.btnDiv);
         btnMult = findViewById(R.id.btnMult);
+        btnMod = findViewById(R.id.btnMod);
         btnPlus = findViewById(R.id.btnPlus);
         btnMinus = findViewById(R.id.btnMinus);
-        btnMod = findViewById(R.id.btnMod);
-        btnClear = findViewById(R.id.btnClear);
+        btnDot = findViewById(R.id.btnDot);
         btnEqual = findViewById(R.id.btnequal);
-        showResult = findViewById(R.id.txtResult);
+        btnClear = findViewById(R.id.btnClear);
 
-        //calling the method PerformCalculator()
-        performCalculator();
+        txtResult = findViewById(R.id.txtResult);
+        listenButton();
     }
 
-    //Method to perform ActionListener
-    private void performCalculator() {
-        //Apply action listener on buttons
+    //method to listen buttons
+
+    private void listenButton() {
+
+
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(0);
+                txtResult.setText(txtResult.getText() + "0");
             }
         });
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(1);
+                txtResult.setText(txtResult.getText() + "1");
             }
         });
+
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(2);
+                txtResult.setText(txtResult.getText() + "2");
             }
         });
-
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(3);
+                txtResult.setText(txtResult.getText() + "3");
             }
         });
-
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(4);
+                txtResult.setText(txtResult.getText() + "4");
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insert(5);
-            }
-        });
-        btn6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insert(6);
-            }
-        });
-        btn7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insert(7);
-            }
-        });
-        btn8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insert(8);
-            }
-        });
-        btn9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insert(9);
+                txtResult.setText(txtResult.getText() + "5");
             }
         });
 
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtResult.setText(txtResult.getText() + "6");
+            }
+        });
+
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtResult.setText(txtResult.getText() + "7");
+            }
+        });
+
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtResult.setText(txtResult.getText() + "8");
+            }
+        });
+
+        btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtResult.setText(txtResult.getText() + "9");
+            }
+        });
+        btnDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                txtResult.setText(txtResult.getText() + ".");
+            }
+        });
+
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (txtResult.getText().length() != 0) {
+                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    mDiv = true;
+                    mDec = false;
+                    txtResult.setText(null);
+                }
+            }
+        });
+
+        btnMult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (txtResult.getText().length() != 0) {
+                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    mMult = true;
+                    mDec = false;
+                    txtResult.setText(null);
+                }
+            }
+        });
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perform();
-                op = '+';
+                if (txtResult.getText().length() != 0) {
+                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    mAdd = true;
+                    mDec = false;
+                    txtResult.setText(null);
+                }
             }
         });
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perform();
-                op = '-';
-            }
-        });
-        btnMult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                perform();
-                op = '*';
-            }
-        });
-        btnDiv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                perform();
-                op = '/';
+                if (txtResult.getText().length() != 0) {
+                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    mSub = true;
+                    mDec = false;
+                }
             }
         });
         btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                perform();
-                op = '%';
+                if (txtResult.getText().length() != 0) {
+                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    mMod = true;
+                    mDec = false;
+                }
             }
         });
+
         btnEqual.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 calculate();
             }
         });
+
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                reset();
+
+                txtResult.setText("");
+                num1 = 0.0;
+                num2 = 0.0;
             }
         });
+
     }
 
-    private void reset() {
-        str = "";
-        op = 'q';
-        num = 0;
-        num1 = 0;
-        showResult.setText("");
-    }
 
     private void calculate() {
-        if (op == '+')
-            num = num1 + num;
-        else if (op == '-')
-            num = num1 - num;
-        else if (op == '*')
-            num = num1 * num;
-        else if (op == '/')
-            num = num1 / num;
-        showResult.setText("" + num);
+        if (mDiv || mMult || mSub || mMod || mAdd) {
+            num2 = Float.parseFloat(txtResult.getText() + "");
+            if (mAdd) {
+                txtResult.setText(num1 + num2 + "");
+            }
+
+            if (mSub) {
+                txtResult.setText(num1 - num2 + "");
+            }
+            if (mDiv) {
+                txtResult.setText(num1 / num2 + "");
+            }
+            if (mMod) {
+                txtResult.setText(num1 % num2 + "");
+            }
+            if (mMult) {
+                txtResult.setText(num1 * num2 + "");
+            }
+
+        }
 
     }
 
-    private void perform() {
-        str = "";
-        num1 = num;
 
-    }
-
-    private void insert(int j) {
-        str = str + j;
-        num = Integer.valueOf(str).intValue();
-        showResult.setText(str);
-
-    }
 }
+
