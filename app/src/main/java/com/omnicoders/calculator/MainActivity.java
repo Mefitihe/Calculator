@@ -118,7 +118,14 @@ public class MainActivity extends AppCompatActivity {
         btnDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtResult.setText(txtResult.getText() + ".");
+                if (mDec) {
+                    //do nothing or you can show the error
+                } else {
+                    txtResult.setText(txtResult.getText() + ".");
+                    mDec = true;
+                }
+
+
             }
         });
 
@@ -203,19 +210,24 @@ public class MainActivity extends AppCompatActivity {
             num2 = Float.parseFloat(txtResult.getText() + "");
             if (mAdd) {
                 txtResult.setText(num1 + num2 + "");
+                mAdd = false;
             }
 
             if (mSub) {
                 txtResult.setText(num1 - num2 + "");
+                mSub = false;
             }
             if (mDiv) {
                 txtResult.setText(num1 / num2 + "");
+                mDiv = false;
             }
             if (mMod) {
                 txtResult.setText(num1 % num2 + "");
+                mMod = false;
             }
             if (mMult) {
                 txtResult.setText(num1 * num2 + "");
+                mMult = false;
             }
 
         }
