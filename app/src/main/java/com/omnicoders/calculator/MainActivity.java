@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (txtResult.getText().length() != 0) {
-                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    num1 = Double.parseDouble(txtResult.getText() + "");
                     mDiv = true;
                     mDec = false;
                     txtResult.setText(null);
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (txtResult.getText().length() != 0) {
-                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    num1 = Double.parseDouble(txtResult.getText() + "");
                     mMult = true;
                     mDec = false;
                     txtResult.setText(null);
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (txtResult.getText().length() != 0) {
-                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    num1 = Double.parseDouble(txtResult.getText() + "");
                     mAdd = true;
                     mDec = false;
                     txtResult.setText(null);
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (txtResult.getText().length() != 0) {
-                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    num1 = Double.parseDouble(txtResult.getText() + "");
                     mSub = true;
                     mDec = false;
                     txtResult.setText(null);
@@ -179,9 +179,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (txtResult.getText().length() != 0) {
-                    num1 = Float.parseFloat(txtResult.getText() + "");
+                    num1 = Double.parseDouble(txtResult.getText() + "");
                     mMod = true;
                     mDec = false;
+                    txtResult.setText(null);
                 }
             }
         });
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void calculate() {
         if (mDiv || mMult || mSub || mMod || mAdd) {
-            num2 = Float.parseFloat(txtResult.getText() + "");
+            num2 = Double.parseDouble(txtResult.getText() + "");
             if (mAdd) {
                 txtResult.setText(num1 + num2 + "");
                 mAdd = false;
